@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifikasi Tanda Tangan Digital - SDIT MADANI INDRAGIRI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .certificate-container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 15px solid #f8f9fa;
+            position: relative;
+        }
+        
+        .certificate-header {
+            background: linear-gradient(90deg, #1a5f7a 0%, #2c8c99 100%);
+            padding: 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .certificate-header:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ffd166 0%, #ff9a3c 100%);
+        }
+        
+        .certificate-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .certificate-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .logo-container {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 2rem;
+            color: #1a5f7a;
+            font-weight: bold;
+        }
+        
+        .certificate-body {
+            padding: 40px;
+        }
+        
+        .verification-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        .badge-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #4cd964 0%, #5ac8fa 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            box-shadow: 0 10px 20px rgba(76, 217, 100, 0.3);
+        }
+        
+        .badge-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .badge-text {
+            font-size: 1.8rem;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .signature-info {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-left: 5px solid #1a5f7a;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .info-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #1a5f7a;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .info-item {
+            padding: 15px;
+        }
+        
+        .info-label {
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        
+        .info-value {
+            font-size: 1.2rem;
+            color: #333;
+            font-weight: 600;
+            padding: 8px 0;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .highlight {
+            color: #1a5f7a;
+        }
+        
+        .institution-section {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(90deg, #fff9e6 0%, #fff 100%);
+            border-radius: 15px;
+            border: 2px dashed #ffd166;
+        }
+        
+        .institution-logo {
+            font-size: 3rem;
+            color: #1a5f7a;
+            margin-bottom: 15px;
+        }
+        
+        .institution-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #1a5f7a;
+            margin-bottom: 10px;
+        }
+        
+        .institution-address {
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 25px;
+            background: #1a5f7a;
+            color: white;
+            margin-top: 30px;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+        }
+        
+        .security-note {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 8rem;
+            color: rgba(26, 95, 122, 0.05);
+            font-family: 'Playfair Display', serif;
+            font-weight: bold;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .certificate-container {
+                margin: 10px;
+                border-width: 10px;
+            }
+            
+            .certificate-header h1 {
+                font-size: 2rem;
+            }
+            
+            .logo-container {
+                width: 60px;
+                height: 60px;
+                top: 20px;
+                right: 20px;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .watermark {
+                font-size: 5rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="certificate-container">
+        <div class="watermark">VERIFIED</div>
+        
+        <div class="certificate-header">
+            <div class="logo-container">
+                <div class="logo">MHI</div>
+            </div>
+            <h1>VERIFIKASI DIGITAL</h1>
+            <p>Tanda Tangan Resmi - Dokumen Sah</p>
+        </div>
+        
+        <div class="certificate-body">
+            <div class="verification-badge">
+                <div class="badge-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="badge-text">Tanda Tangan Terverifikasi</div>
+            </div>
+            
+            <div class="signature-info">
+                <h2 class="info-title">Dokumen ini telah ditandatangani oleh :</h2>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Nama Penandatangan</div>
+                        <div class="info-value highlight">Khairy Hidayat, S. Ag</div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-label">Tanggal Penandatanganan</div>
+                        <div class="info-value">Sabtu, 07 Maret 2026</div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-label">Jabatan</div>
+                        <div class="info-value">Ketua Panitia MHQ</div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-label">Lomba</div>
+                        <div class="info-value">Musabaqah Hifdzil Qur'an</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="institution-section">
+                <div class="institution-logo">
+                    <i class="fas fa-school"></i>
+                </div>
+                <div class="institution-name">SDIT MADANI INDRAGIRI</div>
+                <div class="institution-address">Indragiri Hilir, Riau - Indonesia</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><i class="fas fa-shield-alt"></i> Dokumen ini diverifikasi secara digital</p>
+            <p class="security-note">Setiap perubahan pada dokumen ini akan membatalkan keabsahan tanda tangan</p>
+            <p class="security-note">ID Dokumen: MHI-MHQ-2026-0032</p>
+        </div>
+    </div>
+</body>
+</html>
